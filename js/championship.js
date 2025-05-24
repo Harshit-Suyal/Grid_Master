@@ -164,7 +164,7 @@ function setupEventListeners() {
         });
     });
     
-    // Pagination buttons
+    
     document.getElementById('prev-page').addEventListener('click', function() {
         // In a real app, this would load the previous page of data
         alert('In a full implementation, this would load the previous page of leaderboard data.');
