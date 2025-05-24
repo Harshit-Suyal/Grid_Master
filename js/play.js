@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isNotesMode = false;
     let timer = null;
     let seconds = 0;
-    let fixedCells = []; // Array to track original puzzle cells that shouldn't be modified
-    
+    let fixedCells = [];
     // DOM elements
     const sudokuGrid = document.getElementById('sudoku-grid');
     const timerDisplay = document.getElementById('timer-display');
@@ -22,10 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize the game
     initGame();
-    
-    /**
-     * Initialize the game interface and event listeners
-     */
+
     function initGame() {
         // Set up difficulty buttons
         difficultyButtons.forEach(button => {
@@ -42,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         checkBtn.addEventListener('click', checkSolution);
         solveBtn.addEventListener('click', showSolution);
         
-        // Set up notes toggle
         notesToggle.addEventListener('click', () => {
             isNotesMode = !isNotesMode;
             notesToggle.classList.toggle('active', isNotesMode);
@@ -69,9 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startNewGame();
     }
     
-    /**
-     * Start a new Sudoku game
-     */
+   
     function startNewGame() {
         // Reset game state
         stopTimer();
@@ -103,9 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         statusMessage.textContent = `New ${difficulty} game started. Good luck!`;
     }
     
-    /**
-     * Create the Sudoku grid in the DOM
-     */
     function createGrid() {
         // Clear the grid
         sudokuGrid.innerHTML = '';
@@ -154,18 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
-    /**
-     * Handle number input from keyboard or number pad
-     * @param {number} value - Number value (0 for erasing)
-     */
+   
     function handleNumberInput(value) {
         if (!selectedCell) return;
         
         const row = parseInt(selectedCell.dataset.row, 10);
         const col = parseInt(selectedCell.dataset.col, 10);
         
-        // Don't modify fixed cells
         if (fixedCells.includes(`${row}-${col}`)) {
             statusMessage.textContent = 'Cannot modify original puzzle cells!';
             return;
@@ -175,9 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Handle notes mode
             handleNoteInput(row, col, value);
         } else {
-            // Handle regular number input
-            
-            // Update the display
+           
             if (value === 0) {
                 selectedCell.textContent = '';
                 selectedCell.classList.remove('error');
@@ -210,13 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
-    /**
-     * Handle note input in notes mode
-     * @param {number} row - Row index
-     * @param {number} col - Column index
-     * @param {number} value - Note value (1-9)
-     */
+  
     function handleNoteInput(row, col, value) {
         // Create notes grid if it doesn't exist
         let notesGrid = selectedCell.querySelector('.notes-grid');
@@ -255,11 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPuzzle[row][col] = 0;
     }
     
-    /**
-     * Highlight related cells (same row, column, or box)
-     * @param {number} row - Row index
-     * @param {number} col - Column index
-     */
+   
     function highlightRelatedCells(row, col) {
         // Remove previous highlights
         const cells = document.querySelectorAll('.sudoku-cell');
@@ -288,18 +261,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    /**
-     * Get the current state of the grid
-     * @returns {Array} 2D array representing the current grid state
-     */
+
     function getCurrentGridState() {
         return JSON.parse(JSON.stringify(currentPuzzle));
     }
-    
-    /**
-     * Check if the puzzle is complete (all cells filled)
-     * @returns {boolean} true if puzzle is complete
-     */
+   
     function isPuzzleComplete() {
         // Check if all cells are filled
         for (let row = 0; row < 9; row++) {
@@ -314,9 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return sudokuSolver.isComplete(currentPuzzle);
     }
     
-    /**
-     * Handle puzzle completion
-     */
+
     function handlePuzzleComplete() {
         stopTimer();
         
@@ -335,9 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
     
-    /**
-     * Check the current solution
-     */
+
     function checkSolution() {
         const errors = sudokuSolver.findErrors(currentPuzzle);
         
@@ -365,10 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             statusMessage.textContent = `Found ${errors.length} error${errors.length > 1 ? 's' : ''}. Try again!`;
         }
     }
-    
-    /**
-     * Show the solution
-     */
+   
     function showSolution() {
         // Confirm from user
         if (!confirm('Are you sure you want to see the solution? This will end the current game.')) {
@@ -404,9 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    /**
-     * Start the timer
-     */
+   
     function startTimer() {
         stopTimer(); // Clear any existing timer
         
@@ -416,9 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
     
-    /**
-     * Stop the timer
-     */
+   
     function stopTimer() {
         if (timer) {
             clearInterval(timer);
@@ -426,18 +381,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    /**
-     * Update the timer display
-     */
+    
     function updateTimerDisplay() {
         timerDisplay.textContent = formatTime(seconds);
     }
-    
-    /**
-     * Format time as MM:SS
-     * @param {number} totalSeconds - Total seconds to format
-     * @returns {string} Formatted time string
-     */
+   
     function formatTime(totalSeconds) {
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
