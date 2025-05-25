@@ -6,6 +6,7 @@
     <title>Sign In - GRID MASTER</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
     <div class="sudoku-watermark"></div>
@@ -21,6 +22,10 @@
                 <li><a href="learning.html">Learning Sudoku</a></li>
                 <li><a href="championship.html">Championship</a></li>
                 <li><a href="signin.html">Sign In</a></li>
+                <li><a href="profile.html">
+                    <div class="avattar-circle">
+                    <span id="user-initials">JD</span>
+                </div></a></li>
             </ul>
         </nav>
     </header>
@@ -55,14 +60,6 @@
                 <span>OR</span>
             </div>
             
-            <div class="social-auth">
-                <button class="social-btn google-btn">
-                    <span class="social-icon">G</span>
-                    <span>Sign in with Google</span>
-                </button>
-                
-            </div>
-            
             <div class="auth-footer">
                 <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
                 <a href="#" class="forgot-password">Forgot Password?</a>
@@ -83,5 +80,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/signin-handler.js"></script>
+    <script src="js/navigation.js"></script>
 </body>
 </html>
