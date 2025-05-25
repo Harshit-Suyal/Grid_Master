@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Master - Profile</title>
+    <link rel="stylesheet" href="css/profile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">GRID MASTER</div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="play.html" class="nav-item">Play Sudoku</a>
+            <a href="learning.html" class="nav-item">Learning Sudoku</a>
+            <a href="championship.html" class="nav-item">Championship</a>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </nav>
+    </div>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <!-- User Info Section -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <div class="avatar-circle">
+                    <span id="user-initials">JD</span>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h1 id="user-name">John Doe</h1>
+                <p id="user-email">john.doe@email.com</p>
+                <p class="member-since">Member since: <span id="join-date">January 2025</span></p>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-games">0</span>
+                    <span class="stat-label">Games Played</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="games-won">0</span>
+                    <span class="stat-label">Games Won</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="win-rate">0%</span>
+                    <span class="stat-label">Win Rate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <h2>Your Progress</h2>
+            
+            <!-- Charts Container -->
+            <div class="charts-container">
+                <!-- Games Progress Chart -->
+                <div class="chart-card">
+                    <h3>Games Played Over Time</h3>
+                    <canvas id="gamesChart"></canvas>
+                </div>
+
+                <!-- Performance Chart -->
+                <div class="chart-card">
+                    <h3>Performance by Difficulty</h3>
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-section">
+                <h3>Recent Activity</h3>
+                <div class="activity-list" id="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-icon">🎯</span>
+                        <div class="activity-details">
+                            <p>Welcome to Grid Master!</p>
+                            <span class="activity-time">Just now</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="settings-section">
+            <h2>Account Settings</h2>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label>Username</label>
+                    <input type="text" id="username" readonly>
+                    <button onclick="editField('username')">Edit</button>
+                </div>
+                <div class="setting-item">
+                    <label>Email</label>
+                    <input type="email" id="email" readonly>
+                    <button onclick="editField('email')">Edit</button>
+                </div>
+                <div class="setting-item">
+                    <label>Notifications</label>
+                    <label class="switch">
+                        <input type="checkbox" id="notifications" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>
